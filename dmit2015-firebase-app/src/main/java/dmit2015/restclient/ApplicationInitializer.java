@@ -19,14 +19,14 @@ public class ApplicationInitializer {
     private VideoGameMpRestClient _gameRestClient;
 
     public void initialize(@Observes @Initialized(ApplicationScoped.class) Object event) {
-        _logger.info("Preloading data");
+        _logger.info("Preloading data now");
 
         try {
             // Create a data Faker instance
             var faker = new Faker();
             // Create data for 20 different video games if there are none in the Firebase Realtime DB
             var allVideoGamesMap = _gameRestClient.findAll();
-            if (allVideoGamesMap.isEmpty()) {
+            if (allVideoGamesMap == null) {
                 for (int count = 1; count <= 20; count++) {
                     // Create a VideoGame instance
                     var currentGame = new VideoGame();

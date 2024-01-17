@@ -1,6 +1,6 @@
 package dmit2015.restclient;
 
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.json.JsonObject;
 import jakarta.ws.rs.*;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
@@ -37,7 +37,7 @@ import java.util.LinkedHashMap;
  * VideoGameMpRestClient _videogameMpRestClient = RestClientBuilder.newBuilder().baseUri(apiURi).build(VideoGameMpRestClient.class);
  * </code>
  */
-@RequestScoped
+@Dependent
 @RegisterRestClient(baseUri = "https://dmit2015-1232-swu02-default-rtdb.firebaseio.com")
 public interface VideoGameMpRestClient {
 
