@@ -149,6 +149,9 @@
                         -->
                         <arg>-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n</arg>
                     </jvmArguments>
+
+                    <!-- Build a bootable JAR for cloud environment. -->
+                    <cloud />
                 </configuration>
                 <executions>
                     <execution>
