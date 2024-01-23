@@ -32,6 +32,11 @@
             >
             </p:commandButton>
 
+
+            <ui:repeat value="#{currentVideoGameListView.videogameMap.entrySet()}" var="currentItem">
+
+            </ui:repeat>
+
             <p:dataTable id="entityTable"
                          value="#{currentVideoGameListView.videogameMap.entrySet()}"
                          rendered="#{not empty currentVideoGameListView.videogameMap}"
