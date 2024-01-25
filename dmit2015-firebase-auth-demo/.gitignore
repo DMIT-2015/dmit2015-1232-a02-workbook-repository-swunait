@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+http-client.private.env.json
 
 ### Eclipse ###
 .apt_generated
