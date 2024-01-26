@@ -3,7 +3,7 @@
 # curl 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]'
 #-H 'Content-Type: application/json'
 #--data-binary '{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
-POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{API_KEY}}
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{localId}}
 Content-Type: application/json
 
 {
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 
 ### user01 data
-POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/Todo/LXqLYcDHIaYyDQnYI0f6dSGxRp83.json?auth=eyJhbGciOiJSUzI1NiIsImtpZCI6IjViNjAyZTBjYTFmNDdhOGViZmQxMTYwNGQ5Y2JmMDZmNGQ0NWY4MmIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZG1pdDIwMTUtMTIzMi1zd3UwMiIsImF1ZCI6ImRtaXQyMDE1LTEyMzItc3d1MDIiLCJhdXRoX3RpbWUiOjE3MDYxMzI0MTMsInVzZXJfaWQiOiJMWHFMWWNESElhWXlEUW5ZSTBmNmRTR3hScDgzIiwic3ViIjoiTFhxTFljREhJYVl5RFFuWUkwZjZkU0d4UnA4MyIsImlhdCI6MTcwNjEzMjQxMywiZXhwIjoxNzA2MTM2MDEzLCJlbWFpbCI6InVzZXIwMUBkbWl0MjAxNS5jYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ1c2VyMDFAZG1pdDIwMTUuY2EiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.MS1NMs7AAvKT3O9MkDTIdzh5EZ7omDKFC5pVdI3Id5Dmhj1cWb0NG2LXLO_dzCOXcEsGyvZHmD_W1meeg8IoZTk5aRzLo5jefuJINtovbY3Xc6bxHkI3MkXQ3QkJMhad7qfuUsCUt8r8oIrLPwPZfC665zmeU-0RQdS8gjePQzBgQldRba-ScXEgmEAqw9NaADEQF_1Yyfj6znxCAlvGw3aLMkDUOXgGYT1uoOtW7lYJQ2B_iPbhz6kFST4-jv_RbrwGoNemDh6my_ReeHqGzzdsgQRYigJbvsT1A8UqUWEmHe7WISs5KtC38nvh95XU5ZGlFzp0xJTBFaL-KFhN9w
+POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/Todo/{{localId}}.json?auth={{idToken}}
 Content-Type: application/json
 
 {
@@ -43,5 +43,22 @@ Content-Type: application/json
   "done": true,
   "created": "2024-01-24T14:31:25"
 }
+
+
+###
+
+# curl 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]'
+#-H 'Content-Type: application/json'
+#--data-binary '{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
+POST https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={{API_KEY}}
+Content-Type: application/json
+
+{
+  "email": "user03@dmit2015.ca",
+  "password": "Password2015",
+  "returnSecureToken": true
+}
+
+###
 
 
