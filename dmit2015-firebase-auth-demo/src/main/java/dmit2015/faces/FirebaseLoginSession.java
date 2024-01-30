@@ -30,7 +30,7 @@ public class FirebaseLoginSession implements Serializable {
     private FirebaseAuthenticationMpRestClient _loginService;
 
     @Inject
-    @ConfigProperty(name = "FIREBASE_WEBAPIKEY")
+    @ConfigProperty(name = "firebase.webapikey")
     private String _firebaserestapiKey;
 
     @Getter @Setter

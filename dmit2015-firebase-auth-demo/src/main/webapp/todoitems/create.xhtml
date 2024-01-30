@@ -1,0 +1,72 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:faces="jakarta.faces"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        xmlns:h="jakarta.faces.html"
+        xmlns:pt="jakarta.faces.passthrough"
+        xmlns:cc="jakarta.faces.composite"
+        xmlns:c="jakarta.tags.core"
+        xmlns:fn="jakarta.tags.functions"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Todo - Create"/>
+
+    <ui:define name="maincontent">
+        <f:metadata>
+            <f:viewAction action="#{firebaseLoginSession.checkForToken}" />
+        </f:metadata>
+
+        <h1>Create Todo</h1>
+
+        <p:messages id="messages">
+            <p:autoUpdate/>
+        </p:messages>
+
+
+        <h:form prependId="false">
+            <p:focus context="panel"/>
+
+            <p:panel id="panel" header="Todo Details">
+                <div class="ui-fluid">
+                    <div class="field">
+                        <p:outputLabel for="@next">Task</p:outputLabel>
+                        <p:inputText
+                                id="task"
+                                value="#{currentTodoCreateView.newTodo.task}">
+                        </p:inputText>
+                    </div>
+                    <div class="field">
+                        <p:outputLabel for="@next">Done</p:outputLabel>
+                        <p:selectBooleanCheckbox
+                                id="done"
+                                value="#{currentTodoCreateView.newTodo.done}">
+                        </p:selectBooleanCheckbox>
+                    </div>
+
+                </div>
+
+                <p:commandButton
+                        id="createButton"
+                        value="Create"
+                        icon="pi pi-save"
+                        action="#{currentTodoCreateView.onCreateNew()}"
+                        update=":messages @form"
+                />
+
+            </p:panel>
+
+            <p>
+                <p:link id="backToListLink" outcome="index" value="Back to List">
+                </p:link>
+            </p>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

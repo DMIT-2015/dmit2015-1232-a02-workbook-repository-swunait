@@ -7,6 +7,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import java.io.Serializable;
+
 /**
  *
  * To set the baseUri in microprofile-config.properties:
@@ -24,7 +26,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @Dependent
 @RegisterRestClient(baseUri = "https://identitytoolkit.googleapis.com/v1")
-public interface FirebaseAuthenticationMpRestClient {
+public interface FirebaseAuthenticationMpRestClient extends Serializable {
 
     /**
      * Create a new email and password user
