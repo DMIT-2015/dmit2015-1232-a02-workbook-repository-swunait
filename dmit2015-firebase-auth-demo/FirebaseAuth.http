@@ -3,7 +3,7 @@
 # curl 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]'
 #-H 'Content-Type: application/json'
 #--data-binary '{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
-POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{localId}}
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{API_KEY}}
 Content-Type: application/json
 
 {
@@ -44,6 +44,9 @@ Content-Type: application/json
   "created": "2024-01-24T14:31:25"
 }
 
+
+### user01 data
+GET https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/Todo/{{localId}}.json?auth={{idToken}}
 
 ###
 
