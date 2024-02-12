@@ -1,0 +1,72 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:faces="jakarta.faces"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        xmlns:h="jakarta.faces.html"
+        xmlns:pt="jakarta.faces.passthrough"
+        xmlns:cc="jakarta.faces.composite"
+        xmlns:c="jakarta.tags.core"
+        xmlns:fn="jakarta.tags.functions"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Country - Create"/>
+
+    <ui:define name="maincontent">
+
+        <h1>Create Country</h1>
+
+        <p:messages id="messages">
+            <p:autoUpdate/>
+        </p:messages>
+
+
+        <h:form prependId="false">
+            <p:focus context="panel"/>
+
+            <p:panel id="panel" header="Country Details">
+                <div class="ui-fluid">
+                    <div class="field">
+                        <p:outputLabel for="@next">Field 1 Name</p:outputLabel>
+                        <p:inputText
+                                id="field1Name"
+                                value="#{currentCountryCreateView.newCountry.field1Name}">
+                        </p:inputText>
+                    </div>
+
+                    <!-- TODO: Add input field for each editable property of the entity -->
+                    <div class="field">
+                        <p:outputLabel for="@next">Field 2 Name</p:outputLabel>
+                        <p:inputText
+                                id="field2Name"
+                                value="#{currentCountryCreateView.newCountry.field2Name}">
+                        </p:inputText>
+                    </div>
+
+
+                </div>
+
+                <p:commandButton
+                        id="createButton"
+                        value="Create"
+                        icon="pi pi-save"
+                        action="#{currentCountryCreateView.onCreateNew()}"
+                        update=":messages @form"
+                />
+
+            </p:panel>
+
+            <p>
+                <p:link id="backToListLink" outcome="index" value="Back to List">
+                </p:link>
+            </p>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
