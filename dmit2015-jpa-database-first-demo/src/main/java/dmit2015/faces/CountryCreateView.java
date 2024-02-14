@@ -57,7 +57,10 @@ public class CountryCreateView {
                     var selectedRegion = selectedOptionalRegion.orElseThrow();
                     newCountry.setRegionsByRegionId(selectedRegion);
                 }
+            } else {
+                newCountry.setRegionsByRegionId(null);
             }
+
             _countryRepository.add(newCountry);
             Messages.addFlashGlobalInfo("Create was successful. {0}", newCountry.getCountryId());
             nextPage = "index?faces-redirect=true";
