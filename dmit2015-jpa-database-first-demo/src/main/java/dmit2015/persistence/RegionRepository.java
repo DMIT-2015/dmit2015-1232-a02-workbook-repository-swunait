@@ -21,6 +21,10 @@ public class RegionRepository {
     @Transactional
     public void add(@Valid Region newRegion) {
         // If the primary key is not an identity column then write code below here to generate a new primary key value
+        BigInteger nextId = _entityManager
+                .createQuery("SELECT MAX(r.regionId) + 10 FROM Region r", BigInteger.class)
+                .getSingleResult();
+        newRegion.setRegionId(nextId);
 
         _entityManager.persist(newRegion);
     }
