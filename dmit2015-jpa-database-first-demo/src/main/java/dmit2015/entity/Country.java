@@ -1,6 +1,7 @@
 package dmit2015.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 import java.math.BigInteger;
 import java.util.Collection;
@@ -12,6 +13,7 @@ public class Country {
 
     @Id
     @Column(name = "COUNTRY_ID", nullable = false, length = 2)
+    @Pattern(regexp = "^[a-zA-Z]{2}$", message = "CountryId must contain exactly 2 characters")
     private String countryId;
     @Basic
     @Column(name = "COUNTRY_NAME", nullable = true, length = 60)
