@@ -35,11 +35,21 @@
                     </h:panelGroup>
                     <h:outputText id="editId" value="#{currentCountryDeleteView.editId}"/>
 
-                    <!-- TODO: Delete this comment and add panelGroup/outputText for each property of the entity to display -->
                     <h:panelGroup>
-                        <strong><h:outputText value="field1Name"/></strong>
+                        <strong><h:outputText value="Country Name"/></strong>
                     </h:panelGroup>
-                    <h:outputText id="field1Name" value="#{currentCountryDeleteView.existingCountry.field1Name}">
+                    <h:outputText id="countryName" value="#{currentCountryDeleteView.existingCountry.countryName}">
+                        <!-- Reference example on how to format output using custom date format or custom number format
+                        <f:convertDateTime type="localDate" pattern="MMM d, yyyy" />
+                        <f:convertNumber type="currency" locale="en_CA"/>
+                        -->
+                    </h:outputText>
+
+                    <h:panelGroup>
+                        <strong><h:outputText value="Region Name"/></strong>
+                    </h:panelGroup>
+                    <h:outputText id="regionName"
+                                  value="#{currentCountryDeleteView.existingCountry.regionsByRegionId eq null ? 'No Region' : currentCountryDeleteView.existingCountry.regionsByRegionId.regionName}">
                         <!-- Reference example on how to format output using custom date format or custom number format
                         <f:convertDateTime type="localDate" pattern="MMM d, yyyy" />
                         <f:convertNumber type="currency" locale="en_CA"/>

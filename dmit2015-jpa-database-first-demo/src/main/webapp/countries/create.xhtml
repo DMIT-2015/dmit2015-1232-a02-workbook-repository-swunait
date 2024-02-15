@@ -31,20 +31,32 @@
             <p:panel id="panel" header="Country Details">
                 <div class="ui-fluid">
                     <div class="field">
-                        <p:outputLabel for="@next">Field 1 Name</p:outputLabel>
+                        <p:outputLabel for="@next">CountryId</p:outputLabel>
                         <p:inputText
-                                id="field1Name"
-                                value="#{currentCountryCreateView.newCountry.field1Name}">
+                                id="countryId"
+                                value="#{currentCountryCreateView.newCountry.countryId}">
                         </p:inputText>
                     </div>
 
-                    <!-- TODO: Add input field for each editable property of the entity -->
                     <div class="field">
-                        <p:outputLabel for="@next">Field 2 Name</p:outputLabel>
+                        <p:outputLabel for="@next">Country Name</p:outputLabel>
                         <p:inputText
-                                id="field2Name"
-                                value="#{currentCountryCreateView.newCountry.field2Name}">
+                                id="countryName"
+                                value="#{currentCountryCreateView.newCountry.countryName}">
                         </p:inputText>
+                    </div>
+
+                    <div class="field">
+                        <p:outputLabel for="@next">Region</p:outputLabel>
+                        <p:selectOneMenu
+                                id="selectedRegionId"
+                                value="#{currentCountryCreateView.selectedRegionId}">
+                            <f:selectItem itemLabel="No Region" itemValue="" />
+                            <f:selectItems value="#{currentCountryCreateView.regions}"
+                                           var="currentRegion"
+                                           itemLabel="#{currentRegion.regionName} (#{currentRegion.regionId})"
+                                           itemValue="#{currentRegion.regionId}" />
+                        </p:selectOneMenu>
                     </div>
 
 

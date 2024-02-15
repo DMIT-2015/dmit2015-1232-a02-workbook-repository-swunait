@@ -25,36 +25,28 @@
                 </h:panelGroup>
                 <h:outputText id="editId" value="#{currentCountryDetailsView.editId}"/>
 
-                <!-- TODO: Delete this comment and add panelGroup/outputText for each property of the entity -->
                 <h:panelGroup>
-                    <strong><h:outputText value="Field1Name"/></strong>
+                    <strong><h:outputText value="Country Name"/></strong>
                 </h:panelGroup>
-                <h:outputText id="field1Name" value="#{currentCountryDetailsView.existingCountry.field1Name}">
+                <h:outputText id="countryName" value="#{currentCountryDetailsView.existingCountry.countryName}">
                     <!-- Reference example on how to format output using custom date format or custom number format
                       <f:convertDateTime type="localDate" pattern="MMM d, yyyy" />
                       <f:convertNumber type="currency" locale="en_CA"/>
                   -->
                 </h:outputText>
 
-                <h:panelGroup>
-                    <strong><h:outputText value="Version"/></strong>
-                </h:panelGroup>
-                <h:outputText id="version" value="#{currentCountryDetailsView.existingCountry.version}">
-                </h:outputText>
+                <c:if test="#{not empty currentCountryDetailsView.existingCountry.regionsByRegionId}">
+                    <h:panelGroup>
+                        <strong><h:outputText value="Region Name"/></strong>
+                    </h:panelGroup>
+                    <h:outputText id="regionName" value="#{currentCountryDetailsView.existingCountry.regionsByRegionId.regionName}">
+                        <!-- Reference example on how to format output using custom date format or custom number format
+                          <f:convertDateTime type="localDate" pattern="MMM d, yyyy" />
+                          <f:convertNumber type="currency" locale="en_CA"/>
+                      -->
+                    </h:outputText>
+                </c:if>
 
-                <h:panelGroup>
-                    <strong><h:outputText value="CreateTime"/></strong>
-                </h:panelGroup>
-                <h:outputText id="createTime" value="#{currentCountryDetailsView.existingCountry.createTime}">
-                    <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd h:mm a"/>
-                </h:outputText>
-
-                <h:panelGroup>
-                    <strong><h:outputText value="UpdateTime"/></strong>
-                </h:panelGroup>
-                <h:outputText id="updateTime" value="#{currentCountryDetailsView.existingCountry.updateTime}">
-                    <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd h:mm a"/>
-                </h:outputText>
 
             </p:panelGrid>
 
