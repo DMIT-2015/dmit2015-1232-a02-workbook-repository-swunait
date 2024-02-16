@@ -251,15 +251,14 @@ public class RegionSeleniumIT {
     @Order(3)
     @ParameterizedTest
     @CsvSource({
-            "0, field1Id, expectedField1Value, field2Id, expectedField2Value, field3Id, expectedField3Value",
-            "1, field1Id, expectedField1Value, field2Id, expectedField2Value, field3Id, expectedField3Value",
-            "2, field1Id, expectedField1Value, field2Id, expectedField2Value, field3Id, expectedField3Value",
+            "0, editId, regionName, Canada",
+            "1, editId, regionName, Alberta",
+            "2, editId, regionName, Edmonton"
     })
     void shouldDetails(
             int idIndex,
-            String field1Id, String expectedField1Value,
-            String field2Id, String expectedField2Value,
-            String field3Id, String expectedField3Value
+            String editId,
+            String regionNameId, String expectedRegionName
     ) throws InterruptedException {
         String expectedIdValue = sharedEditIds.get(idIndex);
         // Open a browser and navigate to the index page
@@ -280,32 +279,28 @@ public class RegionSeleniumIT {
         assertThat(driver.getTitle())
                 .isEqualToIgnoringCase("Region - Details");
 
-        // TODO: change the form field names and values you are expecting
-        var actualField1Value = driver.findElement(By.id(field1Id)).getText();
-        var actualField2Value = driver.findElement(By.id(field2Id)).getText();
-        var actualField3Value = driver.findElement(By.id(field3Id)).getText();
-        assertThat(actualField1Value)
-                .isEqualToIgnoringCase(expectedField1Value);
-        assertThat(actualField2Value)
-                .isEqualToIgnoringCase(expectedField2Value);
-        assertThat(actualField3Value)
-                .isEqualToIgnoringCase(expectedField3Value);
+        var actualRegionId = driver.findElement(By.id(editId)).getText();
+        var actualRegionName = driver.findElement(By.id(regionNameId)).getText();
+
+        assertThat(actualRegionId)
+                .isEqualToIgnoringCase(expectedIdValue);
+        assertThat(actualRegionName)
+                .isEqualToIgnoringCase(expectedRegionName);
+
 
     }
 
     @Order(4)
     @ParameterizedTest
     @CsvSource({
-            "0, field1Id, expectedField1Value, field2Id, expectedField2Value, field3Id, expectedField3Value",
-            "1, field1Id, expectedField1Value, field2Id, expectedField2Value, field3Id, expectedField3Value",
-            "2, field1Id, expectedField1Value, field2Id, expectedField2Value, field3Id, expectedField3Value",
+            "0, editId, regionName, New Canada",
+            "1, editId, regionName, New Alberta",
+            "2, editId, regionName, New Edmonton"
     })
     void shouldEdit(
             int idIndex,
-            String idField,
-            String field1Value, String newField1Value,
-            String field2Value, String newField2Value,
-            String field3Value, String newField3Value
+            String editId,
+            String regionNameId, String regionNameValue
     ) throws InterruptedException {
 
         String expectedIdValue = sharedEditIds.get(idIndex);
@@ -328,14 +323,12 @@ public class RegionSeleniumIT {
                 .isEqualToIgnoringCase("Region - Edit");
 
         // Verify ID of entity to edit
-        var idFieldValue = driver.findElement(By.id(idField)).getAttribute("value");
+        var idFieldValue = driver.findElement(By.id(editId)).getAttribute("value");
         assertThat(idFieldValue)
                 .isEqualToIgnoringCase(expectedIdValue);
 
         // Set the value for each form field
-        setTextValue(field1Value, newField1Value);
-        setTextValue(field2Value, newField2Value);
-        setTextValue(field3Value, newField3Value);
+        setTextValue(regionNameId, regionNameValue);
 
         Thread.sleep(1000);
 
