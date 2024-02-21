@@ -51,15 +51,16 @@ public class CountryCreateView {
         String nextPage = "";
         try {
             // Set the region for the country
-            if (selectedRegionId != null) {
-                var selectedOptionalRegion = _regionRepository.findById(selectedRegionId);
-                if (selectedOptionalRegion.isPresent()) {
-                    var selectedRegion = selectedOptionalRegion.orElseThrow();
-                    newCountry.setRegionsByRegionId(selectedRegion);
-                }
-            } else {
-                newCountry.setRegionsByRegionId(null);
-            }
+//            if (selectedRegionId != null) {
+//                var selectedOptionalRegion = _regionRepository.findById(selectedRegionId);
+//                if (selectedOptionalRegion.isPresent()) {
+//                    var selectedRegion = selectedOptionalRegion.orElseThrow();
+//                    newCountry.setRegionsByRegionId(selectedRegion);
+//                }
+//            } else {
+//                newCountry.setRegionsByRegionId(null);
+//            }
+            newCountry.setRegionId(selectedRegionId);
 
             _countryRepository.add(newCountry);
             Messages.addFlashGlobalInfo("Create was successful. {0}", newCountry.getCountryId());

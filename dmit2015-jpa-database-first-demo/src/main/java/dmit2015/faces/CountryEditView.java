@@ -74,15 +74,16 @@ public class CountryEditView implements Serializable {
         String nextPage = "";
         try {
             // Set the region for the country
-            if (selectedRegionId != null) {
-                var selectedOptionalRegion = _regionRepository.findById(selectedRegionId);
-                if (selectedOptionalRegion.isPresent()) {
-                    var selectedRegion = selectedOptionalRegion.orElseThrow();
-                    existingCountry.setRegionsByRegionId(selectedRegion);
-                }
-            } else {
-                existingCountry.setRegionsByRegionId(null);
-            }
+//            if (selectedRegionId != null) {
+//                var selectedOptionalRegion = _regionRepository.findById(selectedRegionId);
+//                if (selectedOptionalRegion.isPresent()) {
+//                    var selectedRegion = selectedOptionalRegion.orElseThrow();
+//                    existingCountry.setRegionsByRegionId(selectedRegion);
+//                }
+//            } else {
+//                existingCountry.setRegionsByRegionId(null);
+//            }
+            existingCountry.setRegionId(selectedRegionId);
 
             _countryRepository.update(editId, existingCountry);
             Messages.addFlashGlobalInfo("Update was successful.");

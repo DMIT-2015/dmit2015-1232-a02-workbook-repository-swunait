@@ -19,10 +19,10 @@ public class Country {
     @Column(name = "COUNTRY_NAME", nullable = true, length = 60)
     private String countryName;
     @Basic
-    @Column(name = "REGION_ID", nullable = true, precision = 0, insertable=false, updatable=false)
+    @Column(name = "REGION_ID", nullable = true, precision = 0)
     private BigInteger regionId;
     @ManyToOne
-    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID")
+    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID", insertable=false, updatable=false)
     private Region regionsByRegionId;
     @OneToMany(mappedBy = "countriesByCountryId")
     private Collection<Location> locationsByCountryId;
