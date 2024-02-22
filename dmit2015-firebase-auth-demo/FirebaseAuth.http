@@ -1,0 +1,67 @@
+###
+
+# curl 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]'
+#-H 'Content-Type: application/json'
+#--data-binary '{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{API_KEY}}
+Content-Type: application/json
+
+{
+  "email": "user02@dmit2015.ca",
+  "password": "Password2015",
+  "returnSecureToken": true
+}
+
+###
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{API_KEY}}
+Content-Type: application/json
+
+{
+  "email": "user01@dmit2015.ca",
+  "password": "Password2015",
+  "returnSecureToken": true
+}
+
+### user02 data
+POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/Todo/{{localId}}.json?auth={{idToken}}
+Content-Type: application/json
+
+{
+  "task": "Create new project",
+  "done": false,
+  "created": "2024-01-24T14:31:25"
+}
+
+
+
+### user01 data
+POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/Todo/{{localId}}.json?auth={{idToken}}
+Content-Type: application/json
+
+{
+  "task": "user01 Create new project",
+  "done": true,
+  "created": "2024-01-24T14:31:25"
+}
+
+
+### user01 data
+GET https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/Todo/{{localId}}.json?auth={{idToken}}
+
+###
+
+# curl 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]'
+#-H 'Content-Type: application/json'
+#--data-binary '{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
+POST https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={{API_KEY}}
+Content-Type: application/json
+
+{
+  "email": "user03@dmit2015.ca",
+  "password": "Password2015",
+  "returnSecureToken": true
+}
+
+###
+
+

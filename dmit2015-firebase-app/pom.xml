@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>dmit2015</groupId>
+    <artifactId>dmit2015-firebase-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>dmit2015-firebase-app</name>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <junit.version>5.10.0</junit.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>13.0.4</version>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>primeflex</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>4.3</version>
+        </dependency>
+
+        <!-- Dependencies for UI Testing using Selenium WebDriver -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.5.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>selenium-jupiter</artifactId>
+            <version>4.3.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.16.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>10.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.eclipse.microprofile/microprofile -->
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>6.1</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+
+            <plugin>
+                <!-- https://docs.wildfly.org/bootablejar/#wildfly_jar_dev_mode -->
+                <!-- mvn wildfly-jar:dev-watch -->
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-jar-maven-plugin</artifactId>
+                <version>11.0.0.Beta1</version>
+                <configuration>
+                    <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#31.0.0.Beta1</feature-pack-location>
+                    <layers>
+                        <!-- https://docs.wildfly.org/29/Bootable_Guide.html#wildfly_layers -->
+                        <layer>cloud-server</layer>
+                        <layer>jsf</layer>
+                        <layer>microprofile-config</layer>
+                    </layers>
+                    <excluded-layers>
+                        <layer>deployment-scanner</layer>
+                    </excluded-layers>
+                    <plugin-options>
+                        <jboss-fork-embedded>true</jboss-fork-embedded>
+                    </plugin-options>
+                    <!-- https://docs.wildfly.org/bootablejar/#wildfly_jar_enabling_debug -->
+                    <jvmArguments>
+                        <!-- https://www.jetbrains.com/help/idea/attaching-to-local-process.html#attach-to-local -->
+                        <!-- To attach a debugger to the running server from IntelliJ IDEA
+                            1. From the main menu, choose `Run | Attach to Process`
+                            2. IntelliJ IDEA will show the list of running local processes. Select the process with the `xxx-bootable.jar` name to attach to.
+                        -->
+                        <arg>-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n</arg>
+                    </jvmArguments>
+
+                    <!-- Build a bootable JAR for cloud environment. -->
+                    <cloud />
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
