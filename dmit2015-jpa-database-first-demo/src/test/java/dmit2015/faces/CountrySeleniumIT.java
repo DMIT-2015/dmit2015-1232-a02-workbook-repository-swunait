@@ -250,13 +250,15 @@ public class CountrySeleniumIT {
     @Order(3)
     @ParameterizedTest
     @CsvSource({
-            "AB,Alberta Canada,Americas,editId,countryName,regionName",
-            "KR,South Korea,Asia,editId,countryName,regionName",
-            "XE,X Earth,Europe,editId,countryName,regionName",
+            "editId,AB,countryName,Alberta Canada,regionName,Americas",
+            "editId,KR,countryName,South Korea,regionName,Asia",
+            "editId,XE,countryName,X Earth,regionName,Europe",
     })
     void shouldDetails(
-            String idValue, String expectedCountryName, String expectedRegionName,
-            String countryCodeField, String countryNameField, String regionNameField
+            String countryCodeField,
+            String idValue,
+            String countryNameField, String expectedCountryName,
+            String regionNameField, String expectedRegionName
     ) throws InterruptedException {
         // Open a browser and navigate directly to the details page
         final String editUrl = String.format("http://localhost:8080/countries/details.xhtml?editId=%s", idValue);
