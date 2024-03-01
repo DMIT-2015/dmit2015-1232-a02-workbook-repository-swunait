@@ -84,7 +84,7 @@ public class RegionSeleniumIT {
         var waitSelectOneMenu = new WebDriverWait(driver, Duration.ofSeconds(3));
         // The id of the items for p:selectOneMenu has a suffix of "_items" appended to the id of the p:selectOneMenu
         String selectOneMenuItemsId = String.format("%s_items", fieldId);
-        var selectOneMenuItems = waitSelectOneMenu.until(ExpectedConditions.presenceOfElementLocated(By.id(selectOneMenuItemsId)));
+        var selectOneMenuItems = waitSelectOneMenu.until(ExpectedConditions.visibilityOfElementLocated(By.id(selectOneMenuItemsId)));
         // The value for each item is stored a attribute named "data-label"
         String selectItemXPath = String.format("*[@data-label=\"%s\"]", fieldValue);
         var selectItem = selectOneMenuItems.findElement(By.xpath(selectItemXPath));
@@ -168,7 +168,7 @@ public class RegionSeleniumIT {
 
         // Wait for 3 seconds and verify navigate has been redirected to the listing page
         var wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        var facesMessages = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ui-messages-info-summary")));
+        var facesMessages = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-messages-info-summary")));
         // Verify the title of the page
         assertThat(driver.getTitle())
                 .isEqualToIgnoringCase("Region - List");
@@ -179,7 +179,7 @@ public class RegionSeleniumIT {
         // The primary key of the entity is at the end of the feedback message after the period
         final int indexOfPrimaryKeyValue = feedbackMessage.indexOf(".") + 2;
         // Extract the primary key for re-use if we need to edit or delete the entity
-        sharedEditIds.add(feedbackMessage.substring(indexOfPrimaryKeyValue));
+        sharedEditIds.add(feedbackMessage.substring(indexOfPrimaryKeyValue).replaceAll(",",""));
 
     }
 
@@ -346,7 +346,6 @@ public class RegionSeleniumIT {
 
     @Order(5)
     @ParameterizedTest
-    // TODO: if there are more than one value remember to decrement the rowNumber by 1 from the original rowNumber
     @CsvSource({
             "0,editId",
             "1,editId",
