@@ -37,7 +37,7 @@ public class MovieInitializer {
     public void initialize(@Observes @Initialized(ApplicationScoped.class) Object event) {
         _logger.info("Initializing movies");
 
-        _movieRepository.deleteAll();
+//        _movieRepository.deleteAll();
 
 //        try {
 //            Movie movie1 = new Movie();

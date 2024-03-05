@@ -1,8 +1,12 @@
 package dmit2015.repository;
 
 import dmit2015.entity.Movie;
+import dmit2015.security.DenyAnonymousAccessSecurityInterceptor;
+import dmit2015.security.MovieRepositorySecurityInterceptor;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.security.enterprise.SecurityContext;
@@ -12,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
+@Interceptors({DenyAnonymousAccessSecurityInterceptor.class, MovieRepositorySecurityInterceptor.class})
 public class MovieRepository {
 
     @Inject
@@ -75,14 +80,15 @@ public class MovieRepository {
         return optionalMovie;
     }
 
+    @ExcludeClassInterceptors
     public List<Movie> findAll() {
 //        List<Movie> movies =  em.createQuery("SELECT m FROM Movie m ", Movie.class)
 //                    .getResultList();
 //
 //        return movies;
-        if (_securityContext.getCallerPrincipal().getName().equalsIgnoreCase("anonymous") ) {
-            throw new RuntimeException("Access Denied. Anonymous users do not have permission to access this method.");
-        }
+//        if (_securityContext.getCallerPrincipal().getName().equalsIgnoreCase("anonymous") ) {
+//            throw new RuntimeException("Access Denied. Anonymous users do not have permission to access this method.");
+//        }
         String username = _securityContext.getCallerPrincipal().getName();
         final String queryStatement = "SELECT m FROM Movie m WHERE m.username = :usernameParam";
         return em.createQuery(queryStatement, Movie.class)
