@@ -14,7 +14,7 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="mssql-dwpubs-jpa-pu" transaction-type="JTA">
+    <persistence-unit name="mssql-mssqlpubsDS-jpa-pu" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:app/datasources/mssqlpubsDS</jta-data-source>
 
