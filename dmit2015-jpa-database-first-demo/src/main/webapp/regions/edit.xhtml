@@ -1,0 +1,69 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:faces="jakarta.faces"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        xmlns:h="jakarta.faces.html"
+        xmlns:pt="jakarta.faces.passthrough"
+        xmlns:cc="jakarta.faces.composite"
+        xmlns:c="jakarta.tags.core"
+        xmlns:fn="jakarta.tags.functions"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Region - Edit"/>
+
+    <ui:define name="maincontent">
+
+        <h1>Edit Region</h1>
+
+        <p:messages id="messages">
+            <p:autoUpdate/>
+        </p:messages>
+
+        <h:form prependId="false">
+
+            <p:panel header="Region Details">
+                <div class="ui-fluid">
+                    <div class="field">
+                        <label for="editId">ID</label>
+                        <p:inputText id="editId"
+                                     label="RegionID"
+                                     value="#{currentRegionEditView.editId}"
+                                     readonly="true">
+                        </p:inputText>
+                    </div>
+
+                    <div class="field">
+                        <p:outputLabel for="@next">Region Name</p:outputLabel>
+                        <p:inputText
+                                id="regionName"
+                                value="#{currentRegionEditView.existingRegion.regionName}">
+                        </p:inputText>
+                    </div>
+
+                </div>
+
+                <p:commandButton
+                        id="updateButton"
+                        value="Save"
+                        icon="pi pi-save"
+                        action="#{currentRegionEditView.onUpdate()}"
+                        update=":messages @form"/>
+
+
+            </p:panel>
+
+            <p>
+                <p:link id="backToListLink" outcome="index" value="Back to List">
+                </p:link>
+            </p>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,64 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:faces="jakarta.faces"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        xmlns:h="jakarta.faces.html"
+        xmlns:pt="jakarta.faces.passthrough"
+        xmlns:cc="jakarta.faces.composite"
+        xmlns:c="jakarta.tags.core"
+        xmlns:fn="jakarta.tags.functions"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Country - Details"/>
+
+    <ui:define name="maincontent">
+
+        <p:panel header="Country Details">
+            <p:panelGrid columns="2">
+                <h:panelGroup>
+                    <strong><h:outputText value="ID"/></strong>
+                </h:panelGroup>
+                <h:outputText id="editId" value="#{currentCountryDetailsView.editId}"/>
+
+                <h:panelGroup>
+                    <strong><h:outputText value="Country Name"/></strong>
+                </h:panelGroup>
+                <h:outputText id="countryName" value="#{currentCountryDetailsView.existingCountry.countryName}">
+                    <!-- Reference example on how to format output using custom date format or custom number format
+                      <f:convertDateTime type="localDate" pattern="MMM d, yyyy" />
+                      <f:convertNumber type="currency" locale="en_CA"/>
+                  -->
+                </h:outputText>
+
+                <c:if test="#{not empty currentCountryDetailsView.existingCountry.regionsByRegionId}">
+                    <h:panelGroup>
+                        <strong><h:outputText value="Region Name"/></strong>
+                    </h:panelGroup>
+                    <h:outputText id="regionName" value="#{currentCountryDetailsView.existingCountry.regionsByRegionId.regionName}">
+                        <!-- Reference example on how to format output using custom date format or custom number format
+                          <f:convertDateTime type="localDate" pattern="MMM d, yyyy" />
+                          <f:convertNumber type="currency" locale="en_CA"/>
+                      -->
+                    </h:outputText>
+                </c:if>
+
+
+            </p:panelGrid>
+
+        </p:panel>
+
+        <p:link id="editLink" outcome="edit" icon="pi pi-user-edit" value="edit">
+            <f:param name="editId" value="#{currentCountryDetailsView.editId}"/>
+        </p:link>
+        |
+        <p:link id="backToListLink" outcome="index" value="Back to List">
+        </p:link>
+
+    </ui:define>
+
+</ui:composition>

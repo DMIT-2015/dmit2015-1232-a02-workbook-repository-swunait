@@ -1,0 +1,59 @@
+// Firebase Realtime Database stores JSON data in a JSON Tree structure
+
+### Push new JSON data to the path
+POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/employees.json
+Content-Type: application/json
+
+{
+  "name":"John",
+  "age":30,
+  "city":"New York"
+}
+
+### Push new JSON data to the path
+POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/employees.json
+Content-Type: application/json
+
+{
+  "name":"Elon Musk",
+  "age": 45,
+  "city":"Edmonton"
+}
+
+### Push new JSON data to the path
+POST https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/videogames.json
+Content-Type: application/json
+
+{
+  "title": "Super Smash Bros",
+  "platform": "Nintendo Switch",
+  "genre": "Fighting"
+}
+
+### Read JSON data by path
+GET https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/employees.json
+
+### Read JSON data by path and primary key value
+GET https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/employees/-NnzQc4pcu_ofk0N3Ilc.json
+
+### Write JSON data - will replace all properties with the properties in the request body - if you miss a property it will be removed
+PUT https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/employees/-NnzQc4pcu_ofk0N3Ilc.json
+Content-Type: application/json
+
+{
+  "name": "Elon Musk",
+
+  "country": "USA"
+
+}
+
+### Remove JSON data - use this if you want to delete data
+DELETE https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/employees/-NnzPqx0OAvRtmb5VAaX.json
+
+### Update data - use this if you want to update some of the properties but not all of them
+PATCH https://dmit2015-1232-swu02-default-rtdb.firebaseio.com/videogames/-NnzRJOMK-RQOHMQgi9d.json
+Content-Type: application/json
+
+{
+  "genre": "RPG"
+}

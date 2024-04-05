@@ -1,0 +1,5 @@
+### Start Batch Job
+POST http://localhost:8080/restapi/batch-jobs/batchletETLProcessForDWPubsSales
+
+### Check batch job status
+GET http://localhost:8080/restapi/batch-jobs/1
